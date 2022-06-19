@@ -1,21 +1,21 @@
 /* eslint-disable prettier/prettier */
-import {CATEGORIES} from '../actions/ACTION_TYPES';
+import {NEWS} from '../actions/ACTION_TYPES';
 
-const CategoryInitialState = {
+const NewsInitialState = {
   data: null,
   errors: [],
   loading: false,
 };
 
-export const categoryReducer = (state = CategoryInitialState, action: any = {}) => {
+export const newsReducer = (state = NewsInitialState, action: any = {}) => {
   switch (action.type) {
-    case CATEGORIES.PENDING: {
+    case NEWS.PENDING: {
       return {
         ...state,
         loading: true,
       };
     }
-    case CATEGORIES.SUCCESS: {
+    case NEWS.SUCCESS: {
       const {response} = action.payload;
       return {
         ...state,
@@ -23,7 +23,7 @@ export const categoryReducer = (state = CategoryInitialState, action: any = {}) 
         data: response,
       };
     }
-    case CATEGORIES.ERROR: {
+    case NEWS.ERROR: {
       const {error} = action.payload;
       return {
         ...state,

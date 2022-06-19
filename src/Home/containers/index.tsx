@@ -5,8 +5,8 @@ import styles from './style';
 
 export const HomeScreen = () =>  {
   return (
-    <View style={styles.container}>
+    <>
       <Text style={styles.helloWorld}>hello world</Text>
-    </View>
+    </>
   );
 }

@@ -1,6 +1,6 @@
 import {combineReducers} from 'redux';
-import {categoryReducer} from './category.reducer';
+import {newsReducer} from './news.reducer';
 
 export const homeReducers = combineReducers({
-  categoryReducer: categoryReducer,
+  newsReducer: newsReducer,
 });

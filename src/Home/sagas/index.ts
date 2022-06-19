@@ -1,6 +1,6 @@
 import {all, fork} from 'redux-saga/effects';
-import {watchCategorySaga} from './categories.saga';
+import {watchNewsSaga} from './news.saga';
 
 export function* homeSagas() {
-  yield all([fork(watchCategorySaga)]);
+  yield all([fork(watchNewsSaga)]);
 }
