@@ -22,7 +22,7 @@ export default new (class HttpClient {
     return session;
   };
   async getDefaultConfig() {
-    let headers;
+    let headers: any;
     try {
       let auth_user = await Storage.retrieveAuthToken();
       headers = auth_user;
@@ -35,8 +35,8 @@ export default new (class HttpClient {
       },
     };
   }
-  async parseConfigAgainstDefaults(config) {
-    const defaultConfig = await this.getDefaultConfig();
+  async parseConfigAgainstDefaults(config: any) {
+    const defaultConfig : any = await this.getDefaultConfig();
     for (const k in config) {
       if (k === 'headers') {
         defaultConfig[k] = {...defaultConfig.headers, ...config.headers};
@@ -47,7 +47,7 @@ export default new (class HttpClient {
     return defaultConfig;
   }
 
-  async request(url, method, config) {
+  async request(url: string, method: any, config: any) {
     const parsedConfig = await this.parseConfigAgainstDefaults(config);
     return axios.request({
       url,
@@ -56,7 +56,7 @@ export default new (class HttpClient {
     });
   }
 
-  parseArgs(against, firstArg, secondArg) {
+  parseArgs(against: any, firstArg: any, secondArg: any) {
     if (secondArg) {
       secondArg[against] = firstArg;
     } else {
@@ -65,28 +65,27 @@ export default new (class HttpClient {
     }
     return secondArg;
   }
-
-  get(url, params, config) {
+  get(url: string, params?: any, config?: any) {
     config = this.parseArgs('params', params, config);
     return this.request(url, 'get', config);
   }
 
-  post(url, data, config) {
+  post(url: string, data: any, config: any) {
     config = this.parseArgs('data', data, config);
     return this.request(url, 'post', config);
   }
 
-  put(url, data, config) {
+  put(url: string, data: any, config: any) {
     config = this.parseArgs('data', data, config);
     return this.request(url, 'put', config);
   }
 
-  patch(url, data, config) {
+  patch(url: string, data: any, config: any) {
     config = this.parseArgs('data', data, config);
     return this.request(url, 'patch', config);
   }
 
-  delete(url, data, config) {
+  delete(url: string, data: any, config: any) {
     config = this.parseArgs('params', data, config);
     return this.request(url, 'delete', config);
   }
