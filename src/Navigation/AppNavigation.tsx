@@ -23,9 +23,9 @@ const AppNavigation = (props: any) => {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="Home"
+        initialRouteName="Main"
         screenOptions={{headerShown: false}}>
-        <Stack.Screen name="Home" component={MainNavigation}/>
+        <Stack.Screen name="Main" component={MainNavigation}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

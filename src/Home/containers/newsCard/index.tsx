@@ -5,11 +5,13 @@ import styles from './style';
 import moment from 'moment';
 
 type newsCardProps = {
-  item?: any;
+  title: string;
+  description: string;
+  imageURL: string;
 };
 export const NewsCard = (props: newsCardProps) =>  {
-  const { item } = props;
-  const img = {uri: "https://s.yimg.com/os/creatr-uploaded-images/2021-05/a8217250-bdfa-11eb-bfc4-2663225cea83"};
+  const { title, description, imageURL } = props;
+  const img = {uri: imageURL};
   const [date, setDate] = useState<String>('');
   useEffect(() => {
     const newsDate = '2022-06-20T16:11:26Z';
@@ -23,13 +25,9 @@ export const NewsCard = (props: newsCardProps) =>  {
         style={styles.image}
       />
       <Text style={styles.title}>
-        New York passes a bill to limit bitcoin mining
+        {title}
       </Text>
-      <Text style={styles.description}>
-      New York lawmakers have passed a bill
-      that would temporarily ban new bitcoin
-      mining operations. Early on Friday, state senators voted 36-27 to pass the legislation. It's now bound for the desk of Governor Kathy Hochul, who will sign it into law or veto th…
-      </Text>
+      <Text style={styles.description}>{description}</Text>
       <View style={styles.footer}>
         <Text style={styles.footerText}>Created {date}</Text>
         <Text style={styles.footerText}>Author Kris Holt</Text>

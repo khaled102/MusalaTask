@@ -10,7 +10,11 @@ export const HomeScreen = () =>  {
   const newsData = useSelector((state: any) => state.home.newsReducer);
   const [refresh, setRefresh] = useState<boolean>(false);
   const renderItem = ({item}: any) => (
-    <NewsCard item={item} />
+    <NewsCard 
+      title={item.title}
+      description={item.description}
+      imageURL={item.urlToImage}
+    />
   );
   const handleOnRefresh = useCallback(() => {
     setRefresh(true);
