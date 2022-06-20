@@ -17,26 +17,25 @@ export const HomeScreen = () =>  {
     dispatch(news());
   }, []);
   useEffect(() => {
-    setRefresh(false);
-  }, []);
+    if (newsData.data) {
+      setRefresh(false);
+    }
+  }, [newsData]);
   return (
     <View style={styles.container}>
       {newsData?.data &&
         <FlatList
-          horizontal={false}
           data={newsData.data.articles} 
           renderItem={renderItem}
           directionalLockEnabled
-          bounces={false}
           showsVerticalScrollIndicator={false}
           refreshControl={
-              <RefreshControl 
-                refreshing={refresh} 
-                onRefresh={handleOnRefresh}
-                tintColor="#F8852D"/>
+            <RefreshControl 
+              refreshing={refresh} 
+              onRefresh={handleOnRefresh}
+              tintColor="#F8852D"
+            />
           }
-          // onRefresh={() => handleOnRefresh()}
-          // refreshing={refresh}
         />
       }
     </View>
