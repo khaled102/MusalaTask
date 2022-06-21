@@ -1,5 +1,5 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import {connect} from 'react-redux';
+import React, { memo, useEffect, useState } from 'react';
+import {useSelector} from 'react-redux';
 import {View, Image, Text} from 'react-native';
 import styles from './style';
 import moment from 'moment';
@@ -8,9 +8,10 @@ type newsCardProps = {
   title: string;
   description: string;
   imageURL: string;
+  author: string;
 };
-export const NewsCard = (props: newsCardProps) =>  {
-  const { title, description, imageURL } = props;
+const NewsCard = (props: newsCardProps) =>  {
+  const { title, description, imageURL, author } = props;
   const img = {uri: imageURL};
   const [date, setDate] = useState<String>('');
   useEffect(() => {
@@ -30,8 +31,9 @@ export const NewsCard = (props: newsCardProps) =>  {
       <Text style={styles.description}>{description}</Text>
       <View style={styles.footer}>
         <Text style={styles.footerText}>Created {date}</Text>
-        <Text style={styles.footerText}>Author Kris Holt</Text>
+        <Text style={styles.footerText}>Author {author}</Text>
       </View>
     </View>
   );
 }
+export default memo(NewsCard);

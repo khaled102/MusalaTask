@@ -25,7 +25,7 @@ const AppNavigation = (props: any) => {
     dispatch(news());
   }, []);
   useEffect(() => {
-    if (newsData) {
+    if (newsData.data) {
       SplashScreen.hide();
     }
   }, [newsData]);

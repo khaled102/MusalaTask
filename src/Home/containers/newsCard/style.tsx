@@ -1,8 +1,9 @@
-import {StyleSheet} from 'react-native';
+import {StyleSheet, Dimensions} from 'react-native';
+const windowWidth = Dimensions.get('window').width;
 
 const styles = StyleSheet.create({
   container: {
-    width: '89%',
+    width: windowWidth / 1.05,
     marginTop: 16,
     alignSelf: 'center',
     justifyContent: 'center',
