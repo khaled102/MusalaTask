@@ -12,6 +12,7 @@ type newsCardProps = {
 };
 const NewsCard = (props: newsCardProps) =>  {
   const { title, description, imageURL, author } = props;
+  const themeData = useSelector((state: any) => state.setting.themeModeReducer);
   const img = {uri: imageURL};
   const [date, setDate] = useState<String>('');
   useEffect(() => {
@@ -20,15 +21,15 @@ const NewsCard = (props: newsCardProps) =>  {
     setDate(formatedDate);
   }, []);
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, themeData.data === 'dark' && {backgroundColor: '#000000'}]}>
       <Image 
         source={img}
         style={styles.image}
       />
-      <Text style={styles.title}>
+      <Text style={[styles.title, themeData.data === 'dark' && {color: '#ECEFF4'}]}>
         {title}
       </Text>
-      <Text style={styles.description}>{description}</Text>
+      <Text style={[styles.description, themeData.data === 'dark' && {color: '#ECEFF4'}]}>{description}</Text>
       <View style={styles.footer}>
         <Text style={styles.footerText}>Created {date}</Text>
         <Text style={styles.footerText}>Author {author}</Text>

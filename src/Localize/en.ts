@@ -4,4 +4,5 @@ export default {
   wantChangeLang: 'Do you want to change language?',
   Cancel: 'Cancel',
   searchPlaceHolder: 'Type Here...',
+  changeDarkMode: 'Change to dark mode',
 };

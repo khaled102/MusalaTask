@@ -1,19 +1,23 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import MainNavigation from './screens';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {NavigationContainer} from '@react-navigation/native';
+import {NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
 import SplashScreen from 'react-native-splash-screen'
 import {news} from '../Home';
-import { useDispatch, useSelector, useStore } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Storage from '../Util/Storage';
 import I18n from 'react-native-i18n';
+import { Appearance } from 'react-native';
+import { themeMode } from '../Setting';
 
 
 const Stack = createNativeStackNavigator();
 
 const AppNavigation = (props: any) => {
   const dispatch = useDispatch();
-  const newsData = useSelector((state: any) => state.home.newsReducer)
+  const newsData = useSelector((state: any) => state.home.newsReducer);
+  const themeData = useSelector((state: any) => state.setting.themeModeReducer);
+  const [themeState, setThemeState] = useState(Appearance.getColorScheme());
   const language = useCallback(async() => {
     const lang = await Storage.retrieveLanguage();
     if (lang !== 'en') {
@@ -29,8 +33,21 @@ const AppNavigation = (props: any) => {
       SplashScreen.hide();
     }
   }, [newsData]);
+  useEffect(() => {
+    if (themeData?.data) {
+      setThemeState(themeData.data);
+    }
+  }, [themeData]);
+  useEffect(() => {
+    const subscription = Appearance.addChangeListener(({ colorScheme }: any) => {
+      console.log(colorScheme);
+      setThemeState(colorScheme);
+      dispatch(themeMode(colorScheme));
+    })
+    return () => subscription.remove();
+  }, [])
   return (
-    <NavigationContainer>
+    <NavigationContainer theme={themeState === 'dark' ? DarkTheme : DefaultTheme}>
       <Stack.Navigator
         initialRouteName="Main"
         screenOptions={{headerShown: false}}>
