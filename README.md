@@ -1,6 +1,12 @@
 # MusalaTask
 
+## Basics
+Change to dark mode can be either manual or from mobile setting, deep link to open specific artical "news://news?index=1" and by change the index the 
+artical will change.
 
+Native events come in as you would expect via onChange, onScroll, onTouch and other props. TouchableHighlight makes it really easy to build nice buttons via onPress, which plays nicely with scroll views and other interactions via the responder system.
+  
+  
 ## Available Scripts
 
 If Yarn was installed when the project was initialized, then dependencies will have been installed via Yarn, and you should probably use it to run these commands as well. Unlike dependency installation, command running syntax is identical for Yarn and NPM at the time of this writing.
@@ -23,6 +29,10 @@ yarn start -- --reset-cache
 Like `npm start`, but also attempts to open your app in the iOS Simulator if you're on a Mac and have it installed.
 
 #### `npm run android`
+
+### `npx uri-scheme open "news://news?index=1" --[ios|android]`
+
+test deep link
 
 Like `npm start`, but also attempts to open your app on a connected Android device or emulator. Requires an installation of Android build tools (see [React Native docs](https://facebook.github.io/react-native/docs/getting-started.html) for detailed setup). We also recommend installing Genymotion as your Android emulator. Once you've finished setting up the native build environment, there are two options for making the right copy of `adb` available to Create React Native App:
 
