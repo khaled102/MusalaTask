@@ -7,33 +7,45 @@ import {news} from '../Home';
 import { useDispatch, useSelector } from 'react-redux';
 import Storage from '../Util/Storage';
 import I18n from 'react-native-i18n';
-import { Appearance } from 'react-native';
+import { Appearance, Linking, Button } from 'react-native';
 import { themeMode } from '../Setting';
 import { NewsDetails } from '../Home';
+import { CustomBackButton } from '../Components';
 
 
 const Stack = createNativeStackNavigator();
 
-const AppNavigation = (props: any) => {
+const AppNavigation = () => {
   const dispatch = useDispatch();
   const newsData = useSelector((state: any) => state.home.newsReducer);
   const themeData = useSelector((state: any) => state.setting.themeModeReducer);
   const [themeState, setThemeState] = useState(Appearance.getColorScheme());
+  const [initalScreen, setInitalScreen] = useState<string | null>(null);
+  const [initalUrl, setInitlUrl] = useState<string | null>();
   const language = useCallback(async() => {
     const lang = await Storage.retrieveLanguage();
     if (lang !== 'en') {
       I18n.locale = 'fr';
     }
   }, []); 
-  useEffect(() => {
-    language();
-    dispatch(news());
+  const initialUrl = useCallback(async () => {
+    const url = await Linking.getInitialURL();
+    setInitlUrl(url);
+    if (url) {
+      setInitalScreen('Details');
+    } else {
+      setInitalScreen('Main');
+    }
   }, []);
   useEffect(() => {
-    if (newsData.data) {
-      SplashScreen.hide();
-    }
-  }, [newsData]);
+    dispatch(news());
+    language();
+  }, []);
+  useEffect(() => {
+    initialUrl();
+    const linkingListener = Linking.addEventListener('url', initialUrl);
+    return () => linkingListener.remove();
+  }, []);
   useEffect(() => {
     if (themeData?.data) {
       setThemeState(themeData.data);
@@ -41,20 +53,38 @@ const AppNavigation = (props: any) => {
   }, [themeData]);
   useEffect(() => {
     const subscription = Appearance.addChangeListener(({ colorScheme }: any) => {
-      console.log(colorScheme);
       setThemeState(colorScheme);
       dispatch(themeMode(colorScheme));
     })
     return () => subscription.remove();
-  }, [])
+  }, []);
+  useEffect(() => {
+    if (newsData.data && initalScreen) {
+      SplashScreen.hide();
+    }
+  }, [newsData, initalScreen]);
   return (
-    <NavigationContainer theme={themeState === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack.Navigator
-        initialRouteName="Main">
-        <Stack.Screen name="Main" component={MainNavigation} options={{headerShown: false}} />
-        <Stack.Screen name="Details" component={NewsDetails} options={{ title: 'Details' }}/>
-      </Stack.Navigator>
-    </NavigationContainer>
+    <>
+      {!initalScreen || !newsData.data ? <></> :
+      <NavigationContainer theme={themeState === 'dark' ? DarkTheme : DefaultTheme}>
+        <Stack.Navigator
+          initialRouteName={initalScreen}>
+          <Stack.Screen name="Main" component={MainNavigation} options={{headerShown: false}} />
+          <Stack.Screen 
+            name="Details" 
+            component={NewsDetails} 
+            options={{ 
+              title: 'Details',
+              headerLeft: () => (
+                <CustomBackButton />
+              ),
+            }}
+            initialParams={{ initalUrl: initalUrl}}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+      }
+    </>
   );
 };
 
