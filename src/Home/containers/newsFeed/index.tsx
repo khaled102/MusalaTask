@@ -42,7 +42,6 @@ export const HomeScreen = (props: any) =>  {
     } else {
       setRefresh(false);
       setNewsFeed(newsData?.data?.articles);
-      console.log('sss')
     }
   }, [newsData]);
   useEffect(() => {
