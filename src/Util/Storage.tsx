@@ -18,7 +18,7 @@ export default new (class Storage {
     return session;
   };
 
-  saveAuthToken(token) {
+  saveAuthToken(token: string) {
     AsyncStorage.setItem(this.AUTH_TOKEN_KEY, token);
   }
 
@@ -33,7 +33,7 @@ export default new (class Storage {
     return userid;
   };
 
-  saveAuthUser(user_id) {
+  saveAuthUser(user_id: string) {
     AsyncStorage.setItem(this.USER_ID, user_id);
   }
 
@@ -47,7 +47,7 @@ export default new (class Storage {
     return AsyncStorage.getItem(this.AUTH_FB_TOKEN_KEY) || defaultValue;
   }
 
-  saveFbAuthToken(token) {
+  saveFbAuthToken(token: string) {
     AsyncStorage.setItem(this.AUTH_FB_TOKEN_KEY, token);
   }
 
@@ -62,7 +62,7 @@ export default new (class Storage {
     return active;
   };
 
-  saveLanguage(language) {
+  saveLanguage(language: string) {
     AsyncStorage.setItem(this.LANGUAGE, language);
   }
 
@@ -77,7 +77,7 @@ export default new (class Storage {
     return verify;
   };
 
-  saveVerify(language) {
+  saveVerify(language: string) {
     AsyncStorage.setItem(this.VERIFY, language);
   }
 

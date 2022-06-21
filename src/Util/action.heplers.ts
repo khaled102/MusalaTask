@@ -1,13 +1,13 @@
-export const createAction = (type, ...argNames) => {
-  return function (...args) {
-    let action = {type, payload: {}};
-    argNames.forEach((arg, index) => {
+export const createAction = (type: any, ...argNames: any) => {
+  return function (...args: any) {
+    let action: any = {type, payload: {}};
+    argNames.forEach((arg: any, index: number) => {
       action.payload[argNames[index]] = args[index];
     });
     return action;
   };
 };
-export const createActionSet = actionName => ({
+export const createActionSet = (actionName: string) => ({
   PENDING: `${actionName}_PENDING`,
   SUCCESS: `${actionName}_SUCCESS`,
   ERROR: `${actionName}_ERROR`,

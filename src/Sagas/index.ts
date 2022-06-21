@@ -3,5 +3,5 @@ import {all, fork} from 'redux-saga/effects';
 import {homeSagas} from '../Home';
 // Redux: Root Saga
 export default function* rootSaga() {
-  yield all([homeSagas]);
+  yield all([fork(homeSagas)]);
 }

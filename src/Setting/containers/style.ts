@@ -6,10 +6,20 @@ const styles = StyleSheet.create({
     width: '100%',
     alignItems: 'center',
   },
-  helloWorld: {
+  itemCard: {
+    width: '100%',
+    backgroundColor: '#FFFFFF',
+    borderBottomWidth: 0.2,
+    borderColor: '#000',
+    height: 80,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  settingItem: {
     color: '#000000',
     fontSize: 16,
     alignSelf: 'center',
+    fontWeight: 'bold',
   },
 });
 
