@@ -1,16 +1,24 @@
-import Spinner from 'react-native-loading-spinner-overlay';
-import React from 'react';
+import React, {useCallback, useState} from 'react';
 import styles from './style';
+import { SearchBar } from "@rneui/themed";
+import I18n from 'i18n-js';
+import {searching} from '../../Home';
+import { useDispatch } from 'react-redux';
 
-type loaderProps = {
-  status: boolean,
-};
-export const searchBar = (props: loaderProps) => {
+export const SearchComponent = () => {
+  const [search, setSearch] = useState<string>('');
+  const dispatch = useDispatch();
+  const updateSearch = useCallback((val: string) => {
+    setSearch(val)
+    dispatch(searching(val));
+  }, []);
   return (
-    <Spinner
-      visible={props.status}
-      textContent={'Loading...'}
-      textStyle={styles.spinnerTextStyle}
+    <SearchBar
+      placeholder={I18n.t('searchPlaceHolder')}
+      onChangeText={updateSearch}
+      value={search}
+      containerStyle={styles.searchContainer}
+      inputContainerStyle={styles.inputContainer}
     />
   );
 };

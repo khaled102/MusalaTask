@@ -1,8 +1,10 @@
-import {StyleSheet} from 'react-native';
+import {StyleSheet, Dimensions} from 'react-native';
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 
 const styles = StyleSheet.create({
   container: {
-    width: '89%',
+    width: windowWidth / 1.05,
     marginTop: 16,
     alignSelf: 'center',
     justifyContent: 'center',
@@ -16,6 +18,13 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 5,
+  },
+  containerFullScreen: {
+    width: windowWidth,
+    marginTop: 0,
+    backgroundColor: '#FFFFFF',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   image: {
     width: '100%',
@@ -40,6 +49,13 @@ const styles = StyleSheet.create({
   },
   footer: {
     marginTop: 16,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: '90%',
+    paddingBottom: 16,
+  },
+  footerFullScreen: {
+    marginTop: windowHeight / 5,
     flexDirection: 'row',
     justifyContent: 'space-between',
     width: '90%',
