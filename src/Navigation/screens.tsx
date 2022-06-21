@@ -3,6 +3,7 @@ import {HomeScreen} from '../Home';
 import {SettingScreen} from '../Setting';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import I18n from 'i18n-js';
 
 const Stack = createNativeStackNavigator();
 
@@ -20,7 +21,7 @@ const MainNavigation = () => {
         tabBarIconStyle: { display: "none" },
       }}
     >
-      <Stack.Screen name="Home" component={HomeScreen} options={{ title: 'New Feeds' }} />
+      <Stack.Screen name="Home" component={HomeScreen} options={{ title: I18n.t('newsFeed') }} />
       <Tab.Screen name="Settings" component={SettingScreen} />
     </Tab.Navigator>
   );

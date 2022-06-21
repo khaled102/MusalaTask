@@ -2,7 +2,7 @@ import React, { memo, useEffect, useState } from 'react';
 import {useSelector} from 'react-redux';
 import {View, Image, Text, TouchableOpacity} from 'react-native';
 import styles from './style';
-import moment from 'moment';
+import I18n from 'i18n-js';
 
 type detailsProps = {
   title: string;
@@ -43,8 +43,8 @@ export const NewsCard = (props: detailsProps) =>  {
             type === 'fullScreen' && styles.footerFullScreen,
         ]}
        >
-        <Text style={styles.footerText}>Created {publishedAt}</Text>
-        <Text style={styles.footerText}>Author {author}</Text>
+        <Text style={styles.footerText}>{I18n.t('Created')} {publishedAt}</Text>
+        <Text style={styles.footerText}>{I18n.t('Author')} {author}</Text>
       </View>
     </TouchableOpacity>
   );

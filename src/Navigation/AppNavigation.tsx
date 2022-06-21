@@ -6,7 +6,7 @@ import SplashScreen from 'react-native-splash-screen'
 import {news} from '../Home';
 import { useDispatch, useSelector } from 'react-redux';
 import Storage from '../Util/Storage';
-import I18n from 'react-native-i18n';
+import I18n from 'i18n-js';
 import { Appearance, Linking, Button } from 'react-native';
 import { themeMode } from '../Setting';
 import { NewsDetails } from '../Home';
@@ -74,7 +74,7 @@ const AppNavigation = () => {
             name="Details" 
             component={NewsDetails} 
             options={{ 
-              title: 'Details',
+              title: I18n.t('Details'),
               headerLeft: () => (
                 <CustomBackButton />
               ),
