@@ -1,14 +1,19 @@
 import * as React from 'react';
 import {HomeScreen} from '../Home';
+import {SettingScreen} from '../Setting';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 const Stack = createNativeStackNavigator();
 
+const Tab = createBottomTabNavigator();
+
 const MainNavigation = () => {
   return (
-    <Stack.Navigator initialRouteName="HomeScreen" screenOptions={{ title: 'New Feeds' }}>
-      <Stack.Screen name="HomeScreen" component={HomeScreen} />
-    </Stack.Navigator>
+    <Tab.Navigator>
+      <Stack.Screen name="Home" component={HomeScreen} options={{ title: 'New Feeds' }} />
+      <Tab.Screen name="Settings" component={SettingScreen} />
+    </Tab.Navigator>
   );
 };
 export default MainNavigation;
