@@ -1,9 +1,5 @@
 # MusalaTask
 
-### `npm install`
-### `yarn`
-
-installing app dependencies
 
 ## Available Scripts
 
