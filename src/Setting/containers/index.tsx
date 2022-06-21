@@ -45,7 +45,7 @@ export const SettingScreen = () =>  {
             themeData.data === 'dark' && {backgroundColor: dark.background}
           ]}
         >
-          <Text style={[styles.settingItem, themeData.data === 'dark' && {color: dark.text}]}>{item.title}</Text>
+          <Text style={[styles.settingItem, themeData.data === 'dark' && {color: dark.text}]}>{I18n.t(item.title)}</Text>
           {item.code === 'mode' && 
             <Switch
               trackColor={{ false: "#767577", true: "#81b0ff" }}

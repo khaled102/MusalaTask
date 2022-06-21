@@ -8,4 +8,5 @@ export default {
   Details: 'Détails',
   Created: 'créer',
   Author: 'Auteur',
+  settings: 'réglages',
 };

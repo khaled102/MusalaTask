@@ -19,10 +19,23 @@ const MainNavigation = () => {
           fontSize: 15
         },
         tabBarIconStyle: { display: "none" },
+        headerTitleAlign: 'center',
       }}
     >
-      <Stack.Screen name="Home" component={HomeScreen} options={{ title: I18n.t('newsFeed') }} />
-      <Tab.Screen name="Settings" component={SettingScreen} />
+      <Stack.Screen 
+        name="Home" 
+        component={HomeScreen} 
+        options={{ 
+          title: I18n.t('newsFeed') ,
+        }} 
+      />
+      <Tab.Screen 
+        name="Settings" 
+        component={SettingScreen} 
+        options={{ 
+          title: I18n.t('settings'),
+        }}
+      />
     </Tab.Navigator>
   );
 };
