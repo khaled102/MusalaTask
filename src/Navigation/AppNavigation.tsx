@@ -9,6 +9,7 @@ import Storage from '../Util/Storage';
 import I18n from 'react-native-i18n';
 import { Appearance } from 'react-native';
 import { themeMode } from '../Setting';
+import { NewsDetails } from '../Home';
 
 
 const Stack = createNativeStackNavigator();
@@ -49,9 +50,9 @@ const AppNavigation = (props: any) => {
   return (
     <NavigationContainer theme={themeState === 'dark' ? DarkTheme : DefaultTheme}>
       <Stack.Navigator
-        initialRouteName="Main"
-        screenOptions={{headerShown: false}}>
-        <Stack.Screen name="Main" component={MainNavigation}/>
+        initialRouteName="Main">
+        <Stack.Screen name="Main" component={MainNavigation} options={{headerShown: false}} />
+        <Stack.Screen name="Details" component={NewsDetails} options={{ title: 'Details' }}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

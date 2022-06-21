@@ -10,7 +10,16 @@ const Tab = createBottomTabNavigator();
 
 const MainNavigation = () => {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator 
+      screenOptions={{
+        tabBarLabelPosition: "beside-icon",
+        tabBarLabelStyle: {
+          fontWeight: "700",
+          fontSize: 15
+        },
+        tabBarIconStyle: { display: "none" },
+      }}
+    >
       <Stack.Screen name="Home" component={HomeScreen} options={{ title: 'New Feeds' }} />
       <Tab.Screen name="Settings" component={SettingScreen} />
     </Tab.Navigator>
