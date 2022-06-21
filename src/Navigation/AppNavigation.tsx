@@ -15,7 +15,7 @@ import { CustomBackButton } from '../Components';
 
 const Stack = createNativeStackNavigator();
 
-const AppNavigation = (props: any) => {
+const AppNavigation = () => {
   const dispatch = useDispatch();
   const newsData = useSelector((state: any) => state.home.newsReducer);
   const themeData = useSelector((state: any) => state.setting.themeModeReducer);
@@ -75,8 +75,8 @@ const AppNavigation = (props: any) => {
             component={NewsDetails} 
             options={{ 
               title: 'Details',
-              headerLeft: (props) => (
-                <CustomBackButton {...props} />
+              headerLeft: () => (
+                <CustomBackButton />
               ),
             }}
             initialParams={{ initalUrl: initalUrl}}
